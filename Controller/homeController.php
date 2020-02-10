@@ -1,43 +1,48 @@
 <?php
+include_once "abstarctController.php";
+class homeController {
 
-class homeController{
-
+    public function add(){
+        $URL_ATUAL= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        if($URL_ATUAL=="http://localhost/Flex/" || $URL_ATUAL=="http://localhost/flex/index.php" || $URL_ATUAL=="http://localhost/flex/"){
+            include_once "Model/banco.php";
+            return $b=new banco;
+        }
+        else{
+            include_once "../Model/banco.php";
+            return $b=new banco;
+        }
+  
+    }
+    
     public function getIndex(){
-        return include "View/home.php";
+         return include "View/home.php";
     }
 
     public function getTabela(){
-        include_once "Model/banco.php";
-        $b=new banco;
-        return $b->getContato();
- 
-    }
+      return  $this->add()->getContato();
+     }
 
     public function addContato($t,$n){
-        include_once "../Model/banco.php";
-        $b=new banco;
-        $b->insertContato($t,$n);
-
+        return  $this->add()->insertContato($t,$n);
     }
 
     public function deleteContato($id){
-        include_once "../Model/banco.php"; 
-        $b=new banco;
-        $b->deleteContato($id);
+        return  $this->add()->deleteContato($id);
     }
 
     public function getU($i){
-        include_once "../Model/banco.php"; 
-        $b=new banco;
-        return $b->getU($i);
+        return  $this->add()->getU($i);
     }
 
     public function updateContato($id,$numero,$nome){
-        include_once "../Model/banco.php"; 
-        $b=new banco;
-        return $b->updateConntato($id,$numero,$nome);   
+       
+        return  $this->add()->updateContato($id,$numero,$nome);
     }
+    
 }
+
+
 
 
 
