@@ -27,6 +27,8 @@ SET time_zone = "+00:00";
 --
 -- Estrutura da tabela `dados`
 --
+create database contatos;
+use contatos;
 
 DROP TABLE IF EXISTS `dados`;
 CREATE TABLE IF NOT EXISTS `dados` (
